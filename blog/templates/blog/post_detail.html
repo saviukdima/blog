@@ -1,0 +1,38 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+	<title>{{ post.title }} - Blog</title>
+{% endblock %}
+
+{% block content %}
+	<h1>{{ post.title }}</h1>
+	<p>
+		<b>Post date: </b> {{ post.format_created_at }}
+	</p>
+	<p>
+		<b>Author: </b> 
+		<a href="{{ post.author.get_absolute_url }}">{{ post.author }}</a>
+	</p>
+	<p>
+		<b>Description: </b>
+		<br>
+		{{ post.body }}
+	</p>
+	<div style="margin-left: 20px ">
+		<h4>Comments</h4>
+		<hr>
+		{% if post.comment_set.all %}
+			
+			{% for comment in post.comment_set.all %}
+				<p>
+					{{ comment.user }} ({{ comment.format_created_at }}) - {{ comment.text }}
+				</p>
+				<hr>
+			{% endfor %}
+			
+		{% else %}
+			<p>There are no comments.</p>
+		{% endif %}
+		<a href="">Add a new comment</a>
+	</div>
+{% endblock %}

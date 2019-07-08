@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+	<title>All bloggers - Blog</title>
+{% endblock %}
+
+{% block content %}
+	<h1>All bloggers</h1>
+	{% if author_list %}
+		<ul>
+			{% for author in author_list %}
+				<li>
+					<a href="{{ author.get_absolute_url }}">{{ author.user.username }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		<h4>There are no bloggers in blog.</h4>
+	{% endif %}
+{% endblock %}

@@ -10,6 +10,9 @@ class Author(models.Model):
 	def __str__(self):
 		return self.user.username
 
+	def get_absolute_url(self):
+		return reverse('author-detail', args=[str(self.id)])
+
 	class Meta:
 		ordering = ['user']
 
@@ -25,6 +28,9 @@ class Post(models.Model):
 	def format_created_at(self):
 		return self.created_at.strftime('%B, %-d, %Y')
 
+	def get_absolute_url(self):
+		return reverse('post-detail', args=[str(self.id)])
+
 	class Meta:
 		ordering = ['-created_at']
 
@@ -38,7 +44,7 @@ class Comment(models.Model):
 		return self.text
 
 	def format_created_at(self):
-		return self.created_at.strftime('%B, %-d, %Y')
+		return self.created_at.strftime('%B, %-d, %Y, %H:%M')
 
 	class Meta:
 		ordering = ['created_at']
