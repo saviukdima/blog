@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+	<title>My posts - Blog</title>
+{% endblock %}
+
+{% block content %}
+	<h1>My posts</h1>
+	{% if not post_list %}
+		<p>You have no posts yet.</p>
+	{% else %}
+		<ul>
+			{% for post in post_list %}
+				<li>
+					<a href="{{ post.get_absolute_url }}">{{ post.title }}</a> ({{ post.format_created_at }})
+				</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+{% endblock %}

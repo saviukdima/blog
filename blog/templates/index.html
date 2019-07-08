@@ -20,4 +20,29 @@
 			<b>Comments: </b> {{ num_comments }}
 		</li>
 	</ul>
+
+
+	{% if user.is_authenticated %}
+		<h4>Welcome, {{ user.username }}!</h4>
+		{% if num_posts_by_user %}
+			<p>
+				You have {{ num_posts_by_user }}
+				{% if num_posts_by_user == 1 %}
+					post.
+				{% elif num_posts_by_user > 1 %}
+					posts.
+				{% endif %}				
+			</p>
+			<ul>
+				{% for post in posts_by_user %}
+					<li>
+						<a href="{{ post.get_absolute_url }}">{{ post.title }}</a> ({{ post.format_created_at }})
+					</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			You have no posts yet.
+		{% endif %}
+	{% endif %}
+
 {% endblock %}
