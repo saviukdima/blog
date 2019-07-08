@@ -5,6 +5,10 @@ from django.contrib.auth.models import User
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse, reverse_lazy
+from django.shortcuts import get_object_or_404
+
 # Create your views here.
 def index(request):
 	posts = Post.objects.all()
@@ -21,7 +25,7 @@ def index(request):
 		'num_authors': num_authors,
 		'num_comments': num_comments,
 		'num_posts_by_user': num_posts_by_user,
-		'posts_by_user': posts_by_user,
+		'posts_by_user': posts_by_user
 	}
 	return render(request, 'index.html', context=context)
 
@@ -44,3 +48,15 @@ class PostsByUserListView(LoginRequiredMixin, generic.ListView):
 
 	def get_queryset(self):
 		return Post.objects.filter(author=self.request.user.id)
+
+class CommentCreate(CreateView):
+	model = Comment
+	fields = ['text']
+
+	def form_valid(self, form):
+		form.instance.user = self.request.user
+		form.instance.post = get_object_or_404(Post, pk=self.kwargs['pk'])
+		return super(CommentCreate, self).form_valid(form)
+
+	def get_success_url(self):
+		return reverse('post-detail', kwargs={'pk':self.kwargs['pk'],})

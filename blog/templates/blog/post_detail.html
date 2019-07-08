@@ -33,6 +33,6 @@
 		{% else %}
 			<p>There are no comments.</p>
 		{% endif %}
-		<a href="">Add a new comment</a>
+		<a href="{% url 'comment-create' post.id %}">Add a new comment</a>
 	</div>
 {% endblock %}
