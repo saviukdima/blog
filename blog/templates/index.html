@@ -5,6 +5,19 @@
 {% endblock %}
 
 {% block content %}
-	<h1>Index page</h1>
-
+	<h1>Blog home</h1>
+	<p>Welcome to DIY Mini Blog, a homework of Django Tutorial by <em>Mozilla Developer Network</em>!</p>
+	<h4>Dynamic content</h4>
+	<p>The blog has the following record counts:</p>
+	<ul class="index-list">
+		<li>
+			<b>Posts: </b> {{ num_posts }}
+		</li>
+		<li>
+			<b>Authors: </b> {{ num_authors }}
+		</li>
+		<li>
+			<b>Comments: </b> {{ num_comments }}
+		</li>
+	</ul>
 {% endblock %}
