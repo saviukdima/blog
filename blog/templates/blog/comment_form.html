@@ -1,9 +1,13 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
+	<title>New comment - Blog</title>
 {% endblock %}
 
 {% block content %}
+	<p>Post your comment for:
+		<a href="{{ post.get_absolute_url }}">{{ post }}</a>
+	</p>
 	<form action="" method="post">
 		{% csrf_token %}
 		<table>
