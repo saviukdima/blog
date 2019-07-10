@@ -49,7 +49,7 @@ class PostsByUserListView(LoginRequiredMixin, generic.ListView):
 	def get_queryset(self):
 		return Post.objects.filter(author=self.request.user.id)
 
-class CommentCreate(CreateView):
+class CommentCreate(LoginRequiredMixin, CreateView):
 	model = Comment
 	fields = ['text']
 
