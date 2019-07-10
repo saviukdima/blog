@@ -21,6 +21,7 @@ class PostAdmin(admin.ModelAdmin):
 	list_display = ('title', 'body', 'author', 'created_at')
 	inlines = [CommentInline]
 	list_filter = ('author', 'created_at')
+	list_editable = ('body',)
 
 @admin.register(Comment)
 class Comment(admin.ModelAdmin):
