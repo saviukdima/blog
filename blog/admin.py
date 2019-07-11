@@ -13,6 +13,7 @@ class PostInline(admin.StackedInline):
 class AuthorAdmin(admin.ModelAdmin):
 	model = Author
 	list_display = ('user', 'bio')
+	list_editable = ('bio', )
 	inlines = [PostInline]
 
 @admin.register(Post)
@@ -21,7 +22,6 @@ class PostAdmin(admin.ModelAdmin):
 	list_display = ('title', 'body', 'author', 'created_at')
 	inlines = [CommentInline]
 	list_filter = ('author', 'created_at')
-	list_editable = ('body',)
 
 @admin.register(Comment)
 class Comment(admin.ModelAdmin):
