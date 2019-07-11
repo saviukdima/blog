@@ -1,5 +1,5 @@
 # DIY Blog Application for MDN Django Course
-Clone this repo and go to project forlder:
+Clone this repo and go to the project forlder:
 ```
 $ git clone https://github.com/savyukdima/blog.git
 $ cd blog
